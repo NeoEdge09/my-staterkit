@@ -11,30 +11,39 @@
     </div>
     <div class="app-nav" id="app-simple-bar">
         <ul class="main-nav p-0 mt-2">
-            {{-- <li class="menu-title"> <span>Others</span></li> --}}
-            <li class="no-sub">
-                <a class="" href="{{ route('index') }}">
-                    <i class="ti ti-home"></i> Home
-                </a>
-            </li>
-            <li>
-                <a class="" data-bs-toggle="collapse" href="#level" aria-expanded="false">
-                    <i class="ph-duotone  ph-number-circle-two"></i> 2 level
-                </a>
-                <ul class="collapse" id="level">
-                    <li><a href="#">Blank</a></li>
-                    <li class="another-level">
-                        <a class="" data-bs-toggle="collapse" href="#level2" aria-expanded="false">
-                            Another level
-                        </a>
-                        <ul class="collapse" id="level2">
-                            <li><a href="#">Blank</a></li>
-                        </ul>
+            <li class="menu-title"> <span>Others</span></li>
+            @foreach (getMenu() as $menu)
+                @if (!$menu->permission || auth()->user()->can($menu->permission))
+                    <li class="{{ $menu->children->count() ? '' : 'no-sub' }}">
+                        @if ($menu->route)
+                            <a class="" href="{{ route($menu->route) }}">
+                                <i class="{{ $menu->icon }}"></i> {{ $menu->name }}
+                            </a>
+                        @else
+                            <a class="" data-bs-toggle="collapse" href="#menu-{{ $menu->id }}"
+                                aria-expanded="false">
+                                <i class="{{ $menu->icon }}"></i> {{ $menu->name }}
+                            </a>
+                        @endif
+
+                        @if ($menu->children->count())
+                            <ul class="collapse" id="menu-{{ $menu->id }}">
+                                @foreach ($menu->children as $child)
+                                    @if (!$child->permission || auth()->user()->can($child->permission))
+                                        <li>
+                                            @if ($child->route)
+                                                <a href="{{ route($child->route) }}">{{ $child->name }}</a>
+                                            @else
+                                                <a href="#">{{ $child->name }}</a>
+                                            @endif
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        @endif
                     </li>
-
-                </ul>
-            </li>
-
+                @endif
+            @endforeach
 
 
 
