@@ -11,7 +11,6 @@
     </div>
     <div class="app-nav" id="app-simple-bar">
         <ul class="main-nav p-0 mt-2">
-            <li class="menu-title"> <span>Others</span></li>
             @foreach (getMenu() as $menu)
                 @if (!$menu->permission || auth()->user()->can($menu->permission))
                     <li class="{{ $menu->children->count() ? '' : 'no-sub' }}">
@@ -25,28 +24,51 @@
                                 <i class="{{ $menu->icon }}"></i> {{ $menu->name }}
                             </a>
                         @endif
-
-                        @if ($menu->children->count())
-                            <ul class="collapse" id="menu-{{ $menu->id }}">
-                                @foreach ($menu->children as $child)
-                                    @if (!$child->permission || auth()->user()->can($child->permission))
-                                        <li>
-                                            @if ($child->route)
-                                                <a href="{{ route($child->route) }}">{{ $child->name }}</a>
-                                            @else
-                                                <a href="#">{{ $child->name }}</a>
-                                            @endif
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        @endif
+                        @if ($menu->id == 2)
                     </li>
+                    <li class="menu-title">
+                        <span>Apps</span>
+                    </li>
+                    <li>
                 @endif
+                @if ($menu->children->count())
+                    <ul class="collapse" id="menu-{{ $menu->id }}">
+                        @foreach ($menu->children as $child)
+                            @if (!$child->permission || auth()->user()->can($child->permission))
+                                <li class="{{ $child->children->count() ? 'another-level' : '' }}">
+                                    @if ($child->route)
+                                        <a href="{{ route($child->route) }}">{{ $child->name }}</a>
+                                    @else
+                                        <a class="" data-bs-toggle="collapse" href="#submenu-{{ $child->id }}"
+                                            aria-expanded="false">
+                                            {{ $child->name }}
+                                        </a>
+                                    @endif
+
+                                    @if ($child->children->count())
+                                        <ul class="collapse" id="submenu-{{ $child->id }}">
+                                            @foreach ($child->children as $subChild)
+                                                @if (!$subChild->permission || auth()->user()->can($subChild->permission))
+                                                    <li>
+                                                        @if ($subChild->route)
+                                                            <a
+                                                                href="{{ route($subChild->route) }}">{{ $subChild->name }}</a>
+                                                        @else
+                                                            <a href="#">{{ $subChild->name }}</a>
+                                                        @endif
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                @endif
+                </li>
+            @endif
             @endforeach
-
-
-
         </ul>
     </div>
 

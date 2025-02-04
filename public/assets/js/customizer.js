@@ -10,7 +10,9 @@ $(function () {
         },
         "html"
     );
-    loadConfiguration();
+    setTimeout(() => {
+        loadConfiguration();
+    }, 0);
 });
 
 $(document).on("click", ".sidebar-option > li", function () {
