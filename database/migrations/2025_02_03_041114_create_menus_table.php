@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->string('route')->nullable();
             $table->string('permission')->nullable();
-            $table->integer('order')->default(0);
+            $table->integer('order')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->foreign('parent_id')->references('id')->on('menus')->onDelete('cascade');
             $table->timestamps();
