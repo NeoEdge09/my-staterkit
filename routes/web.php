@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
 
-Route::view('index', 'pages/index')->name('index');
+Route::view('index', 'Pages/index')->name('index');
 Route::view('dashboard/index', 'pages/dashboard/index')->name('dashboard');
 Route::get('api/weather', [WeatherController::class, 'getCurrentWeather']);
 
@@ -18,3 +18,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';

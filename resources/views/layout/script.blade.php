@@ -21,4 +21,18 @@
 <script src="{{ asset('/assets/js/tooltips_popovers.js') }}"></script>
 
 
+<!-- latest jquery-->
+<script src="{{ asset('assets/vendor/datatable/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/select/select2.min.js') }}"></script>
+<script src="{{ asset('assets/js/select.js') }}"></script>
+
+
+<!-- toatify js-->
+<script src="{{ asset('assets/vendor/notifications/toastify-js.js') }}"></script>
+<script src="{{ asset('assets/vendor/toastify/toastify.js') }}"></script>
+
+
+<!-- sweetalert js-->
+<script src="{{ asset('assets/vendor/sweetalert/sweetalert.js') }}"></script>
 @yield('script')
+@stack('scripts')
