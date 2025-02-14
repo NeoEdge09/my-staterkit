@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Admin\RolePermissionSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,15 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            MenuSeeder::class,
+            RolePermissionSeeder::class,
+            RouteAccessSeeder::class,
+        ]);
         User::factory(50)->create();
 
         User::factory()->create([
             'name' => 'dika',
             'email' => 'zoro@gmail.com',
-        ]);
-
-        $this->call([
-            MenuSeeder::class,
-        ]);
+        ])->assignRole('admin');
     }
 }

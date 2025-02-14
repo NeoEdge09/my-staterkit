@@ -12,10 +12,9 @@
 </head>
 
 <body>
-    <!-- Loader start-->
     <div class="app-wrapper">
         <div class="loader-wrapper">
-            <div class="loader_16"></div>
+            <div class="loader_2"></div>
         </div>
         <!-- Loader end-->
 
@@ -30,6 +29,7 @@
 
             <!-- Main Section start -->
             <main>
+
                 {{-- main body content --}}
                 @yield('main-content')
             </main>

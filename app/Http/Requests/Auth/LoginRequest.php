@@ -80,6 +80,23 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'email' => 'Email',
+            'password' => 'Password',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format Email tidak valid',
+            'password.required' => 'Password wajib diisi',
+        ];
     }
 }

@@ -18,109 +18,58 @@ class MenuSeeder extends Seeder
                 'icon' => 'ti ti-home',
                 'route' => 'index',
                 'order' => 1,
+
+
             ],
             [
                 'name' => 'Dashboard',
                 'icon' => 'ti ti-dashboard',
                 'route' => 'index',
                 'order' => 2,
-            ],
 
+            ],
 
             [
                 'name' => 'Settings',
                 'icon' => 'ti ti-settings',
-                'order' => 2,
+                'order' => 3,
             ],
             [
                 'name' => 'Users',
                 'icon' => 'fas fa-user',
-                // 'route' => 'user.index',
+                'route' => 'admin.users.index',
                 'parent_id' => 3,
+                'order' => 1,
             ],
             [
                 'name' => 'Role',
                 'icon' => 'fas fa-user-tag',
-                // 'route' => 'role.index',
+                'route' => 'admin.roles.index',
                 'parent_id' => 3,
+                'order' => 2,
             ],
             [
                 'name' => 'Permission',
                 'icon' => 'fas fa-user-lock',
-                // 'route' => 'permission.index',
+                'route' => 'admin.permissions.index',
                 'parent_id' => 3,
-            ],
-            [
-                'name' => 'Menu',
-                'icon' => 'fas fa-bars',
-                // 'route' => 'menu.index',
-                'parent_id' => 3,
-            ],
-            [
-                'name' => 'Menu 1',
-                'parent_id' => 7,
-                'order' => 1,
-            ],
-            [
-                'name' => 'Menu 2',
-                'parent_id' => 7,
-                'order' => 2,
-            ],
-            [
-                'name' => 'Menu 3',
-                'parent_id' => 7,
                 'order' => 3,
             ],
             [
-                'name' => 'Menu 4',
-                'parent_id' => 7,
-                'order' => 4,
+                'name' => 'Route Access',
+                'icon' => 'fas fa-bars',
+                'route' => 'admin.route-accesses.index',
+                'parent_id' => 3,
+                'order' => 4
             ],
             [
-                'name' => 'Menu 5',
-                'parent_id' => 7,
+                'name' => 'Menus',
+                'icon' => 'fas fa-bars',
+                'route' => 'admin.menus.index',
+                'parent_id' => 3,
                 'order' => 5,
             ],
-            [
-                'name' => 'Menu 7',
-                'parent_id' => 7,
-                'order' => 7,
-            ],
-            [
-                'name' => 'Menu 7',
-                'parent_id' => 7,
-                'order' => 7,
-            ],
-            [
-                'name' => 'Menu 8',
-                'parent_id' => 7,
-                'order' => 8,
-            ],
-            [
-                'name' => 'Menu 9',
-                'parent_id' => 7,
-                'order' => 9,
-            ],
-            [
-                'name' => 'Menu 10',
-                'parent_id' => 7,
-                'order' => 10,
-            ],
-            [
-                'name' => 'Menu 7',
-                'parent_id' => 7,
-                'order' => 11,
-            ],
-            [
-                'name' => 'Menu 12',
-                'parent_id' => 7,
-                'order' => 12,
-            ],
-            [
-                'name' => 'Menu 13',
-                'parent_id' => 7,
-                'order' => 13,
-            ],
+
         ];
 
         foreach ($menus as $menu) {

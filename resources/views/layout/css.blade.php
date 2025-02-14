@@ -1,5 +1,5 @@
 <!-- Animation css -->
-<link rel="stylesheet" href="{{ asset('assets/vendor/animation/animate.min.css') }}" >
+<link rel="stylesheet" href="{{ asset('assets/vendor/animation/animate.min.css') }}">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,19 @@
 
 <!-- Simplebar css-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/simplebar/simplebar.css') }}">
+
+<!--font-awesome-css-->
+<link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome/css/all.css') }}">
+
+<!-- Data Table css-->
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/datatable/jquery.dataTables.min.css') }}">
+<link rel="stylesheet" type="text/css"
+    href="{{ asset('assets/vendor/datatable/datatable2/buttons.dataTables.min.css') }}">
+
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/select/select2.min.css') }}">
+
+<!-- toastify css-->
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/toastify/toastify.css') }}">
 
 @yield('css')
 
