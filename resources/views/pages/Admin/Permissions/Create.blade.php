@@ -150,6 +150,18 @@
                     error: function(xhr) {
                         handleAjaxError(xhr);
                         resetSubmitButton();
+                        if (xhr.status === 403) {
+                            Toastify({
+                                text: "You don't have permission to perform this action",
+                                duration: 3000,
+                                close: true,
+                                gravity: "top",
+                                position: "center",
+                                style: {
+                                    background: "rgb(var(--danger),1)",
+                                },
+                            }).showToast();
+                        }
                     }
                 });
             });

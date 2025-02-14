@@ -11,7 +11,7 @@ class RouteAccessRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,26 @@ class RouteAccessRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'route_name' => ['required', 'string', 'max:255'],
+            'role' => ['required', 'exists:roles,id'],
+            'permission' => ['required', 'exists:permissions,id'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'role.exists' => 'The selected role is invalid.',
+            'permission.exists' => 'The selected permission is invalid.',
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'route_name' => 'route name',
+            'role' => 'role',
+            'permission' => 'permission',
         ];
     }
 }

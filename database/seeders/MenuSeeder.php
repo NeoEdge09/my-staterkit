@@ -19,21 +19,20 @@ class MenuSeeder extends Seeder
                 'route' => 'index',
                 'order' => 1,
 
+
             ],
             [
                 'name' => 'Dashboard',
                 'icon' => 'ti ti-dashboard',
                 'route' => 'index',
                 'order' => 2,
-                'permission' => 'dashboard-view	',
-            ],
 
+            ],
 
             [
                 'name' => 'Settings',
                 'icon' => 'ti ti-settings',
-                'order' => 2,
-
+                'order' => 3,
             ],
             [
                 'name' => 'Users',

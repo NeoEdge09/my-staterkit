@@ -72,7 +72,7 @@
 
                                     <li class="app-divider-v dotted py-1"></li>
                                     <li>
-                                        <a class="f-w-500" href="#" target="_blank">
+                                        <a class="f-w-500" href="{{ route('profile.edit') }}">
                                             <i class="ph-duotone  ph-user-circle pe-1 f-s-20"></i> Profile Details
                                         </a>
                                     </li>
