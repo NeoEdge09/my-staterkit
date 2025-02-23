@@ -11,13 +11,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class MenuController extends Controller
 {
     public function index(Request $request)
     {
         $menus = Menu::query()
-            ->select('id', 'name', 'icon', 'route', 'permission', 'order', 'parent_id')
+            ->select('id', 'name', 'icon', 'route', 'role', 'permission', 'order', 'parent_id')
             ->with('children', 'parent')
             ->get();
         if ($request->ajax()) {
@@ -30,6 +31,9 @@ class MenuController extends Controller
                 })
                 ->addColumn('icon', function ($menu) {
                     return '<i class="' . $menu->icon . '"></i>';
+                })
+                ->addColumn('role', function ($menu) {
+                    return $menu->role ?? '-';
                 })
                 ->addColumn('permission', function ($menu) {
                     return $menu->permission ?? '-';
@@ -114,6 +118,7 @@ class MenuController extends Controller
                 'columns' => [
                     ['data' => 'name', 'name' => 'name', 'title' => 'Name'],
                     ['data' => 'icon', 'name' => 'icon', 'title' => 'Icon'],
+                    ['data' => 'role', 'name' => 'role', 'title' => 'Role'],
                     ['data' => 'permission', 'name' => 'permission', 'title' => 'Permission'],
                     ['data' => 'route', 'name' => 'route', 'title' => 'Route'],
                     ['data' => 'parent', 'name' => 'parent', 'title' => 'Parent'],
@@ -128,6 +133,7 @@ class MenuController extends Controller
                     'label' => $route->getName(),
                 ];
             })->filter(),
+            'roles' => Role::all(),
             'permissions' => Permission::all(),
         ]);
     }

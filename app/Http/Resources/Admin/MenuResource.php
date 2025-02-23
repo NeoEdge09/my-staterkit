@@ -19,6 +19,7 @@ class MenuResource extends JsonResource
             'name' => $this->name,
             'icon' => $this->icon,
             'route' => $this->route,
+            'role' => $this->role,
             'permission' => $this->permission,
             'order' => $this->order,
             'parent_id' => $this->parent_id,

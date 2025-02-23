@@ -1,5 +1,6 @@
 <!-- Menu Navigation starts -->
 <nav>
+
     <div class="app-logo">
         <a class="logo d-inline-block" href="{{ route('index') }}">
             <img src="{{ asset('../assets/images/logo/1.png') }}" alt="#">
@@ -12,7 +13,10 @@
     <div class="app-nav" id="app-simple-bar">
         <ul class="main-nav p-0 mt-2">
             @foreach (getMenu() as $menu)
-                @if (!$menu->permission || auth()->user()->can($menu->permission))
+                @if (
+                    !$menu->permission ||
+                        auth()->user()->can($menu->permission) ||
+                        (!$menu->role || auth()->user()->hasRole($menu->role)))
                     <li class="{{ $menu->children->count() ? '' : 'no-sub' }}">
                         @if ($menu->route)
                             <a class="" href="{{ route($menu->route) }}">
@@ -34,7 +38,10 @@
                 @if ($menu->children->count())
                     <ul class="collapse" id="menu-{{ $menu->id }}">
                         @foreach ($menu->children as $child)
-                            @if (!$child->permission || auth()->user()->can($child->permission))
+                            @if (
+                                !$child->permission ||
+                                    auth()->user()->can($child->permission) ||
+                                    (!$child->role || auth()->user()->hasRole($child->role)))
                                 <li class="{{ $child->children->count() ? 'another-level' : '' }}">
                                     @if ($child->route)
                                         <a href="{{ route($child->route) }}">{{ $child->name }}</a>
@@ -48,7 +55,10 @@
                                     @if ($child->children->count())
                                         <ul class="collapse" id="submenu-{{ $child->id }}">
                                             @foreach ($child->children as $subChild)
-                                                @if (!$subChild->permission || auth()->user()->can($subChild->permission))
+                                                @if (
+                                                    !$subChild->permission ||
+                                                        auth()->user()->can($subChild->permission) ||
+                                                        (!$subChild->role || auth()->user()->hasRole($subChild->role)))
                                                     <li>
                                                         @if ($subChild->route)
                                                             <a

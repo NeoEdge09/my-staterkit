@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MenuSeeder::class,
             RolePermissionSeeder::class,
+            RouteAccessSeeder::class,
         ]);
         User::factory(50)->create();
 

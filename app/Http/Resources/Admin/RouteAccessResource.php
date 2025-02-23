@@ -14,6 +14,20 @@ class RouteAccessResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'route_name' => $this->route_name,
+            'role_id' => $this->role_id,
+            'permission_id' => $this->permission_id,
+            'created_at' => $this->created_at,
+            'role' => $this->whenLoaded('role', [
+                'id' => $this->role?->id,
+                'name' => $this->role?->name,
+            ]),
+            'permission' => $this->whenLoaded('permission', [
+                'id' => $this->permission?->id,
+                'name' => $this->permission?->name,
+            ]),
+        ];
     }
 }

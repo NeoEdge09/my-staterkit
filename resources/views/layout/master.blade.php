@@ -29,6 +29,7 @@
 
             <!-- Main Section start -->
             <main>
+
                 {{-- main body content --}}
                 @yield('main-content')
             </main>

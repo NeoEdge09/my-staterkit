@@ -196,16 +196,31 @@
                         input.after('<div class="invalid-feedback">' + value[0] + '</div>');
                     });
                 } else {
-                    Toastify({
-                        text: "An error occurred. Please try again.",
-                        duration: 3000,
-                        close: true,
-                        gravity: "top",
-                        position: "center",
-                        style: {
-                            background: "rgb(var(--danger),1)",
-                        },
-                    }).showToast();
+
+                    if (xhr.status === 403) {
+                        Toastify({
+                            text: "You don't have permission to perform this action",
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "center",
+                            style: {
+                                background: "rgb(var(--danger),1)",
+                            },
+                        }).showToast();
+                    } else {
+                        Toastify({
+                            text: "An error occurred. Please try again.",
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "center",
+                            style: {
+                                background: "rgb(var(--danger),1)",
+                            },
+                        }).showToast();
+                    }
+
                 }
             }
 

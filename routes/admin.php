@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\RouteAccessController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->prefix('admin')->group(function () {
+Route::middleware(['auth', 'dynamic.role_permission'])->prefix('admin')->group(function () {
 
     Route::controller(MenuController::class)->group(function () {
         Route::get('menus', 'index')->name('admin.menus.index');

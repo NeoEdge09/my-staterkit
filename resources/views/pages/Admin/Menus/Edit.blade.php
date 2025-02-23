@@ -63,6 +63,16 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6">
+                                            <label for="edit_role" class="form-label">Role</label>
+                                            <select class="select2 form-select" id="edit_role" name="role">
+                                                <option value="">-- Select role --</option>
+                                                @foreach ($roles as $role)
+                                                    <option value="{{ $role->name }}">{{ $role->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
                                             <label for="edit_permission" class="form-label">Permission</label>
                                             <select class="select2 form-select" id="edit_permission" name="permission">
                                                 <option value="">-- Select permission --</option>
@@ -129,11 +139,13 @@
                     dataType: "JSON",
                     success: function(data) {
                         const item = data.data
+                        console.log(item)
                         $('#id').val(item.id);
                         $('#edit_name').val(item.name);
                         $('#edit_icon').val(item.icon);
                         $('#edit_route').val(item.route).trigger('change');
-                        $('#edit_permission').val(item.permission);
+                        $('#edit_role').val(item.role).trigger('change');
+                        $('#edit_permission').val(item.permission).trigger('change');
                         $('#edit_order').val(item.order);
                         $('#edit_parent_id').val(item.parent_id).trigger('change');
                     }
@@ -187,6 +199,19 @@
                                 input.after('<div class="invalid-feedback">' + value[
                                     0] + '</div>');
                             });
+                        } else if (xhr.status === 403) {
+                            Toastify({
+                                text: "You don't have permission to perform this action",
+                                duration: 3000,
+                                close: true,
+                                gravity: "top",
+                                position: "center",
+                                style: {
+                                    background: "rgb(var(--danger),1)",
+                                },
+                            }).showToast();
+                        } {
+
                         } else {
                             alert("Terjadi kesalahan, silakan coba lagi.");
                         }
