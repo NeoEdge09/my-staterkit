@@ -44,13 +44,14 @@ class DynamicRoleAndPermissionMiddleware
             if ($isAuthorized) {
                 return $next($request);
             }
+            $rolesAndPermissions = array_merge(
+                $routeAccesses->pluck('role.name')->filter()->all(),
+                $routeAccesses->pluck('permission.name')->filter()->all()
+            );
 
-            $roles = $routeAccesses->pluck('role.name')->filter()->all();
-            $permissions = $routeAccesses->pluck('permission.name')->filter()->all();
-
-            throw UnauthorizedException::forRoles($roles, $permissions);
+            throw UnauthorizedException::forRolesOrPermissions($rolesAndPermissions);
         }
 
-        throw UnauthorizedException::forRolesOrPermissions([], []);
+        throw UnauthorizedException::forRolesOrPermissions([]);
     }
 }
